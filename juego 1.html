@@ -1,0 +1,179 @@
+<html lang="es">
+    <head>
+        <!-- Bootstrap CSS -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuestionario</title>
+<style>
+    body {
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+    
+
+    .container {
+        text-align: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        border-radius: 10px;
+    }
+
+    .pregunta {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .opciones button {
+        display: block;
+        margin: 10px;
+        padding: 20px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .opciones button:hover {
+        background-color: #45a049;
+    }
+
+    #resultado {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+
+</style>
+</head>
+<body>
+
+
+<div class="container">
+    <img src="https://i.ytimg.com/vi/6fkTx4haAdY/maxresdefault.jpg" alt="Imagen del Quizz">
+    <div class="pregunta">1) ¿Por qué es importante cuidar el agua? </div>
+    <div class="opciones">
+        <button onclick="verificarRespuesta(this)">a) Es el líquido mas importante de la naturaleza,sin ella no podriamos vivir </button>
+
+        <button onclick="verificarRespuesta(this)">b) Nos ayuda a estar sanos, a hacer la digestión, mantiene la musculatura en buen estado, actúa refrigerando o calentando el cuerpo y ayuda a transportar el oxigeno entre las células de nuestro cuerpo</button>
+
+        <button onclick="verificarRespuesta(this)">c) En el planeta el 97% es agua salada y, por tanto, no es apta para el consumo humano. Esto deja en un 3% la cantidad total de agua dulce en el planeta</button>
+
+        <button onclick="verificarRespuesta(this)">d) Para lavar la vereda</button>
+
+        <button onclick="verificarRespuesta(this)">e) Para jugar cuando hace calor</button>
+
+        <button onclick="verificarRespuesta(this)">f) Respuesta A,B y C SON CORRECTAS</button>
+
+    </div>
+    <div id="resultado"></div>
+
+
+<script>
+    let puntaje = 0;
+    let preguntas = [
+        {
+            pregunta: "1) ¿Por qué es importante cuidar el agua?",
+            opciones: ["a) Es el líquido mas importante de la naturaleza,sin ella no podriamos vivir ", "b) Nos ayuda a estar sanos, a hacer la digestión, mantiene la musculatura en buen estado, actúa refrigerando o calentando el cuerpo y ayuda a transportar el oxigeno entre las células de nuestro cuerpo", "c) En el planeta el 97% es agua salada y, por tanto, no es apta para el consumo humano. Esto deja en un 3% la cantidad total de agua dulce en el planeta", "d) Para lavar la vereda", "e) Para jugar cuando hace calor", "f) Respuesta A,B y C SON CORRECTAS"],
+            correcta: "f) Respuesta A,B y C SON CORRECTAS"
+        },
+
+        {
+            pregunta: "2) ¿Cómo podemos reducir el consumo de agua?",
+            opciones: ["a) Cerrar el grifo mientras nos estamos lavando la cara, los dientes o las manos y se debe hacer lo mismo cuando se estén lavando los platos", "b) No tirar residuos como papeles o envoltorios al inodoro, tíralos a una papelera y recicla siempre que sea posible", "c) Regar las plantas con regadera o por sistemas de goteo", "d) Todas son correctas "],
+            correcta: "d) Todas son correctas "
+        },
+
+        {
+            pregunta: "3) ¿Por qué es importante cuidar la energía electrica?",
+            opciones: ["a) La iluminación representa cerca de un tercio de la energía que se consume en el hogar", "b) Ayuda al medio ambiente evitando emisiones de gases de efecto invernadero y de mercurio que provocan las luces eléctricas", "c) Agotamiento de las energías no renovables", "d) Todas son correctas "],
+            correcta: "d) Todas son correctas "
+        },
+        {
+            pregunta: "4) ¿Cómo podemos reducir el uso de la energía electrica?",
+            opciones: ["a) Apagar los equipos eléctricos cuando no estén en uso", "b) Aprovechar la energía solar", "c) Poniendo una vela", "d) Encender sólo lo necesario", "e) Emplear tecnología que ahorre energía eléctrica", "f) A-B-D-E son correctas"],
+            correcta: "f) A-B-D-E son correctas"
+        },
+        {
+            pregunta: "5) ¿Qué pasa con el plástico?",
+            opciones: ["a) El plástico es un material que el planeta no puede digerir", "b) No pasa nada, lo utilizo y ya esta", "c) Tarda cientos de años en descomponerse en el medio ambiente, hasta 1.000 años según el tipo de plástico", "d) Se descompone rápido. No me voy a poner a pensar en eso", "e)  A y C son correctas"],
+            correcta: "e)  A y C son correctas"
+        },
+        {
+            pregunta: "6) ¿Cómo reducimos el plástico?",
+            opciones: ["a) Llevar una botella de plástico reutilizable", "b) No utilices bolsas de plástico, mejor las de tela", "c) Evitar usar sorbetes", "d) Todas son correctas"],
+            correcta: "d) Todas son correctas"
+        },
+    ];
+    let preguntaActual = 0;
+
+    const verificarRespuesta = (boton) => {
+        const respuestaSeleccionada = boton.textContent;
+        const preguntaActualData = preguntas[preguntaActual];
+
+        if (respuestaSeleccionada === preguntaActualData.correcta) {
+            puntaje++;
+            document.getElementById('resultado').textContent = `¡Respuesta Correcta! Puntaje: ${puntaje}`;
+        } else {
+            document.getElementById('resultado').textContent = 'Respuesta Incorrecta';
+        }
+
+        preguntaActual++;
+        if (preguntaActual < preguntas.length) {
+            mostrarSiguientePregunta();
+        } else {
+            finalizarQuizz();
+        }
+    };
+
+    const mostrarSiguientePregunta = () => {
+        const preguntaElemento = document.querySelector('.pregunta');
+        const opcionesElemento = document.querySelector('.opciones');
+        const resultadoElemento = document.getElementById('resultado');
+
+        preguntaElemento.textContent = preguntas[preguntaActual].pregunta;
+        opcionesElemento.innerHTML = '';
+
+        preguntas[preguntaActual].opciones.forEach(opcion => {
+            const btn = document.createElement('button');
+            btn.textContent = opcion;
+            btn.onclick = function() { verificarRespuesta(this); };
+            opcionesElemento.appendChild(btn);
+        });
+
+        resultadoElemento.textContent = '';
+    };
+
+    const finalizarQuizz = () => {
+    const container = document.querySelector('.container');
+    container.innerHTML = `
+        <div class="text-center mt-5">
+            <h2 class="text-success">¡Fin del Quizz!</h2>
+            <p class="lead">Tu puntaje final es: <strong>${puntaje}</strong> de <strong>${preguntas.length}</strong></p>
+            <button onclick="window.location.href='Juegos.html';" class="btn btn-lg btn-primary mt-3">Volver al Menú de Juegos</button>
+        </div>`;
+};
+
+
+
+    mostrarSiguientePregunta();
+</script>
+</body>
+</html>
+

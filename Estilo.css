@@ -1,0 +1,247 @@
+/* Estilo.css */
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 50;
+    padding: 50;
+    text-align: center;
+    background-color: bisque;
+}
+
+header {
+    background: url(Imagenes/pngtree-protect-earth-fresh-banner-poster-background-picture-image_1074351.jpg)no-repeat;
+    height: 300px;
+    background-size: cover;
+}
+
+header h1 {
+    font-family: 'bangers', cursive;
+    font-size: 36px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'bangers', cursive;
+}
+
+.Sabermas {
+    text-align: center;
+}
+
+.choose {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    background: url('Imagenes/leaf-regular-24.png') no-repeat left center;
+    height: 30px;
+    padding-left: 40px;
+    padding-bottom: 50px
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #333;
+    /* Color de fondo gris oscuro */
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+
+nav ul li a {
+    font-size: 18px;
+}
+
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+footer p {
+    font-size: 14px;
+}
+
+ul {
+    text-align: left;
+    display: inline-block;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.columna {
+    width: 33%;
+    float: left;
+}
+
+@media (max-width: 500px) {
+
+    .columna {
+        width: auto;
+        float: none;
+    }
+
+}
+
+h2{
+    padding: 20px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.polvo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.txt{
+    margin-left: 50px;
+    font-style: oblique;
+}
+
+.imagen{
+    width: 500px;
+    height: 500px;
+}
+
+.wrapper{
+    margin: 50px auto;
+    width: 70%;
+}
+
+.text-box h2 {
+    font-size: 42px;
+}
+
+.text-box p {
+    font-size: 16psx;
+}
+
+img {
+    max-width: 320px;
+    float: left;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+.cabeza{
+    align-items: center;
+    display: flex;
+    justify-content: center;    
+}
+
+.cajadetexto{
+    width: 900px;
+    margin-bottom: 200px;
+}
+
+menu{
+    background-color: blue;
+}
+
+footer{
+    margin-top: 480px;
+}
+
+.section-videos {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.video-carousel {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
+  position: relative;
+}
+
+.video-item {
+  border: 3px solid #8ecae6;
+  border-radius: 8px;
+  transition: transform 0.3s ease; /* Transición suave */
+    position: relative;
+}
+
+.video-item:hover {
+  transform: scale(1.05);
+}
+.section-videos {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  .video-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .video-item {
+    border: 3px solid #8ecae6;
+    border-radius: 8px;
+    transition: transform 0.3s;
+  }
+  
+  .video-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .video-wrapper {
+    text-align: center;
+    max-width: 320px;
+  }
+  #news-container .card {
+    transition: transform 0.3s ease;
+}
+
+#news-container .card:hover {
+    transform: scale(1.05); /* Aumenta el tamaño en un 5% al pasar el cursor */
+}
+/* Animación de zoom para imágenes */
+.wrapper .text-box img {
+    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.wrapper .text-box img:hover {
+    transform: scale(1.2); /* Aumenta el tamaño de la imagen un 20% */
+}
+
+/* Aumentar el tamaño del texto al pasar el cursor */
+.wrapper .text-box a {
+    transition: font-size 0.3s ease, color 0.3s ease;
+}
+
+.wrapper .text-box a:hover {
+    font-size: 1.2em; /* Aumenta el tamaño del texto */
+    color: darkgreen; /* Cambia el color del texto para un efecto visual adicional */
+}

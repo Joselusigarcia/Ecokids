@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sopa de Letras para Niños</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            background-color: #E9FFC7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .left-column {
+            width: 750px;
+            height: 600px;
+            overflow-y: scroll;
+        }
+        .sopa-letras {
+            display: grid;
+            grid-template-columns: repeat(14, 1fr);
+            grid-template-rows: repeat(14, 1fr);
+            gap: 5px;
+        }
+        .sopa-letras div {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .right-column {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .timer {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .palabras-buscar {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        .palabras {
+            margin-bottom: 5px;
+        }
+        .seleccionada {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        .palabra-encontrada {
+            text-decoration: underline;
+            color: green;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="left-column">
+        <h2>Sopa de Letras</h2>
+        <div id="sopa-de-letras">
+            <div class="sopa-letras" id="sopa-letras">
+                <!-- Letras de la sopa de letras -->
+                <div class="letra">H</div>
+                <div class="letra">X</div>
+                <div class="letra">M</div>
+                <div class="letra">R</div>
+                <div class="letra">T</div>
+                <div class="letra">Q</div>
+                <div class="letra">D</div>
+                <div class="letra">I</div>
+                <div class="letra">W</div>
+                <div class="letra">S</div>
+                <div class="letra">N</div>
+                <div class="letra">S</div>
+                <div class="letra">E</div>
+                <div class="letra">B</div>
+        
+                <div class="letra">F</div>
+                <div class="letra">Y</div>
+                <div class="letra">F</div>
+                <div class="letra">R</div>
+                <div class="letra">E</div>
+                <div class="letra">C</div>
+                <div class="letra">I</div>
+                <div class="letra">C</div>
+                <div class="letra">L</div>
+                <div class="letra">A</div>
+                <div class="letra">R</div>
+                <div class="letra">K</div>
+                <div class="letra">D</div>
+                <div class="letra">J</div>
+        
+                <div class="letra">Z</div>
+                <div class="letra">C</div>
+                <div class="letra">O</div>
+                <div class="letra">N</div>
+                <div class="letra">S</div>
+                <div class="letra">E</div>
+                <div class="letra">R</div>
+                <div class="letra">V</div>
+                <div class="letra">A</div>
+                <div class="letra">C</div>
+                <div class="letra">I</div>
+                <div class="letra">O</div>
+                <div class="letra">N</div>
+                <div class="letra">L</div>
+        
+                <div class="letra">K</div>
+                <div class="letra">S</div>
+                <div class="letra">R</div>
+                <div class="letra">R</div>
+                <div class="letra">E</div>
+                <div class="letra">D</div>
+                <div class="letra">U</div>
+                <div class="letra">C</div>
+                <div class="letra">I</div>
+                <div class="letra">R</div>
+                <div class="letra">E</div>
+                <div class="letra">J</div>
+                <div class="letra">L</div>
+                <div class="letra">G</div>
+        
+                <div class="letra">T</div>
+                <div class="letra">M</div>
+                <div class="letra">E</div>
+                <div class="letra">D</div>
+                <div class="letra">I</div>
+                <div class="letra">O</div>
+                <div class="letra">A</div>
+                <div class="letra">M</div>
+                <div class="letra">B</div>
+                <div class="letra">I</div>
+                <div class="letra">E</div>
+                <div class="letra">N</div>
+                <div class="letra">T</div>
+                <div class="letra">E</div>
+        
+                <div class="letra">A</div>
+                <div class="letra">N</div>
+                <div class="letra">N</div>
+                <div class="letra">T</div>
+                <div class="letra">Q</div>
+                <div class="letra">T</div>
+                <div class="letra">L</div>
+                <div class="letra">V</div>
+                <div class="letra">D</div>
+                <div class="letra">T</div>
+                <div class="letra">A</div>
+                <div class="letra">N</div>
+                <div class="letra">V</div>
+                <div class="letra">W</div>
+        
+                <div class="letra">C</div>
+                <div class="letra">X</div>
+                <div class="letra">M</div>
+                <div class="letra">E</div>
+                <div class="letra">C</div>
+                <div class="letra">O</div>
+                <div class="letra">L</div>
+                <div class="letra">O</div>
+                <div class="letra">G</div>
+                <div class="letra">I</div>
+                <div class="letra">A</div>
+                <div class="letra">G</div>
+                <div class="letra">O</div>
+                <div class="letra">M</div>
+        
+                <div class="letra">G</div>
+                <div class="letra">R</div>
+                <div class="letra">Q</div>
+                <div class="letra">X</div>
+                <div class="letra">W</div>
+                <div class="letra">O</div>
+                <div class="letra">A</div>
+                <div class="letra">H</div>
+                <div class="letra">O</div>
+                <div class="letra">R</div>
+                <div class="letra">R</div>
+                <div class="letra">O</div>
+                <div class="letra">G</div>
+                <div class="letra">Q</div>
+        
+                <div class="letra">P</div>
+                <div class="letra">C</div>
+                <div class="letra">T</div>
+                <div class="letra">R</div>
+                <div class="letra">E</div>
+                <div class="letra">U</div>
+                <div class="letra">T</div>
+                <div class="letra">I</div>
+                <div class="letra">L</div>
+                <div class="letra">I</div>
+                <div class="letra">Z</div>
+                <div class="letra">A</div>
+                <div class="letra">R</div>
+                <div class="letra">K</div>
+        
+                <div class="letra">S</div>
+                <div class="letra">G</div>
+                <div class="letra">B</div>
+                <div class="letra">A</div>
+                <div class="letra">Y</div>
+                <div class="letra">Z</div>
+                <div class="letra">R</div>
+                <div class="letra">T</div>
+                <div class="letra">K</div>
+                <div class="letra">Q</div>
+                <div class="letra">O</div>
+                <div class="letra">X</div>
+                <div class="letra">P</div>
+                <div class="letra">F</div>
+        
+                <div class="letra">Y</div>
+                <div class="letra">F</div>
+                <div class="letra">P</div>
+                <div class="letra">L</div>
+                <div class="letra">A</div>
+                <div class="letra">N</div>
+                <div class="letra">E</div>
+                <div class="letra">T</div>
+                <div class="letra">A</div>
+                <div class="letra">D</div>
+                <div class="letra">I</div>
+                <div class="letra">Q</div>
+                <div class="letra">A</div>
+                <div class="letra">Z</div>
+        
+                <div class="letra">L</div>
+                <div class="letra">C</div>
+                <div class="letra">H</div>
+                <div class="letra">N</div>
+                <div class="letra">V</div>
+                <div class="letra">H</div>
+                <div class="letra">H</div>
+                <div class="letra">Y</div>
+                <div class="letra">W</div>
+                <div class="letra">I</div>
+                <div class="letra">A</div>
+                <div class="letra">I</div>
+                <div class="letra">R</div>
+                <div class="letra">E</div>
+        
+                <div class="letra">I</div>
+                <div class="letra">A</div>
+                <div class="letra">G</div>
+                <div class="letra">U</div>
+                <div class="letra">A</div>
+                <div class="letra">U</div>
+                <div class="letra">I</div>
+                <div class="letra">U</div>
+                <div class="letra">U</div>
+                <div class="letra">O</div>
+                <div class="letra">X</div>
+                <div class="letra">C</div>
+                <div class="letra">T</div>
+                <div class="letra">M</div>
+        
+                <div class="letra">N</div>
+                <div class="letra">D</div>
+                <div class="letra">N</div>
+                <div class="letra">F</div>
+                <div class="letra">G</div>
+                <div class="letra">O</div>
+                <div class="letra">I</div>
+                <div class="letra">Z</div>
+                <div class="letra">R</div>
+                <div class="letra">X</div>
+                <div class="letra">Y</div>
+                <div class="letra">V</div>
+                <div class="letra">F</div>
+                <div class="letra">I</div>
+                <!-- El contenido de la sopa de letras se mantiene igual -->
+                <!-- Añade más letras según tu diseño -->
+            </div>
+        </div>
+    </div>
+
+    <div class="right-column">
+        <h2>Palabras a Buscar</h2>
+        <ul class="palabras-buscar" id="palabras-buscar">
+            <div class="palabras pos buscar" data-palabra="MEDIO AMBIENTE">MEDIO AMBIENTE</div>
+            <div class="palabras pos buscar" data-palabra="ECOLOGIA">ECOLOGIA</div>
+            <div class="palabras pos buscar" data-palabra="PLANETA">PLANETA</div>
+            <div class="palabras pos buscar" data-palabra="AIRE">AIRE</div>
+            <div class="palabras pos buscar" data-palabra="AGUA">AGUA</div>
+            <div class="palabras pos buscar" data-palabra="REUTILIZAR">REUTILIZAR</div>
+            <div class="palabras pos buscar" data-palabra="REDUCIR">REDUCIR</div>
+            <div class="palabras pos buscar" data-palabra="RECICLAR">RECICLAR</div>
+            <div class="palabras pos buscar" data-palabra="AHORRO">AHORRO</div>
+            <div class="palabras pos buscar" data-palabra="CONSERVACION">CONSERVACION</div>
+            <!-- Añade más palabras -->
+        </ul>
+
+        <div class="controls">
+            <button class="btn btn-primary" id="toggle-audio">🔊 Audio</button>
+            <div class="timer" id="timer">Tiempo: 00:00</div>
+            <button class="btn btn-danger" onclick="resetGame()">Reiniciar</button>
+        <div> </div>
+            <button onclick="window.location.href='Juegos.html';" class="btn btn-lg btn-primary mt-3">Volver al Menú de Juegos</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let selectedLetters = [];
+    let selectedCells = [];
+    const palabrasBuscar = document.querySelectorAll('.palabras');
+
+    // Lógica para seleccionar letras
+    const letras = document.querySelectorAll('.letra');
+    letras.forEach((letra, index) => {
+        letra.addEventListener('click', () => {
+            // Evitar que se seleccione la misma letra más de una vez
+            if (letra.classList.contains('seleccionada')) {
+                letra.classList.remove('seleccionada');
+                selectedLetters.pop();
+                selectedCells.pop();
+            } else {
+                letra.classList.add('seleccionada');
+                selectedLetters.push(letra.innerText);
+                selectedCells.push(letra);
+            }
+            checkPalabra(); // Verificar después de cada selección
+        });
+    });
+
+    // Función para verificar si la palabra seleccionada está en la lista
+    function checkPalabra() {
+        const cadenaSeleccionada = selectedLetters.join('');
+        console.log('Letras seleccionadas:', cadenaSeleccionada);
+        palabrasBuscar.forEach(palabra => {
+            const palabraTexto = palabra.getAttribute('data-palabra').replace(/\s+/g, '').toUpperCase();
+            if (cadenaSeleccionada === palabraTexto) {
+                palabra.classList.add('palabra-encontrada'); // Marca la palabra como encontrada
+                selectedCells.forEach(cell => cell.classList.add('palabra-encontrada')); // Subraya las letras seleccionadas
+                limpiarSeleccion(); // Limpia la selección actual
+            }
+        });
+    }
+
+    // Función para limpiar la selección de letras
+    function limpiarSeleccion() {
+        selectedLetters = [];
+        selectedCells = [];
+        letras.forEach(letra => letra.classList.remove('seleccionada'));
+    }
+
+    let timerInterval;
+    let seconds = 0;
+
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            seconds++;
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            const formattedTime = `${minutes < 10 ? '0' : ''}${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+            document.getElementById('timer').textContent = `Tiempo: ${formattedTime}`;
+        }, 1000);
+    }
+
+    function resetGame() {
+        clearInterval(timerInterval);
+        seconds = 0;
+        document.getElementById('timer').textContent = 'Tiempo: 00:00';
+        startTimer();
+        palabrasBuscar.forEach(palabra => palabra.classList.remove('palabra-encontrada'));
+        letras.forEach(letra => {
+            letra.classList.remove('seleccionada');
+            letra.classList.remove('palabra-encontrada');
+        });
+        selectedLetters = [];
+        selectedCells = [];
+    }
+
+    // Iniciar el temporizador cuando se cargue la página
+    window.onload = startTimer;
+</script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzle Virtual - Ecología</title>
+    <link rel="stylesheet" href="Estilo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #e0f7fa;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            color: #00695c;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 2px #004d40;
+        }
+        #mainContainer {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        #puzzleContainer {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            border: 5px solid #004d40;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #ffffff;
+        }
+        .puzzlePiece {
+            width: 100px;
+            height: 100px;
+            background-size: 300px 300px;
+            cursor: pointer;
+            border: 2px solid #004d40;
+            border-radius: 5px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        #referenceImage {
+            width: 320px;
+            height: 320px;
+            border: 5px solid #004d40;
+            border-radius: 10px;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #referenceImage img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+        }
+        #message {
+            font-size: 20px;
+            color: #2e7d32;
+            font-weight: bold;
+            display: none;
+            margin-top: 15px;
+            text-align: center;
+        }
+        #botonSalir {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        #botonSalir:hover {
+            background-color: #e64a19;
+        }
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            width: 100%;
+            position: sticky;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <h1>Puzle Medio Ambiente</h1>
+    <div id="mainContainer">
+        <div id="puzzleContainer"></div>
+        <div id="referenceImage">
+            <img id="referenceImg" src="" alt="Imagen de referencia">
+        </div>
+    </div>
+    <div id="message">¡Felicidades! Has completado el puzle.</div>
+    <a href="http://127.0.0.1:5501/Juegos.html" id="botonSalir">Salir</a>
+
+    <footer>
+        <p>Derechos de autor © 2024 Cuidemos el Medio Ambiente. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const puzzleContainer = document.getElementById("puzzleContainer");
+        const message = document.getElementById("message");
+        const referenceImg = document.getElementById("referenceImg");
+
+        // Lista de imágenes para el puzle
+        const imagenes = [
+"https://www.shutterstock.com/shutterstock/photos/2305249159/display_1500/stock-vector-boy-and-a-girl-protect-the-planet-earth-2305249159.jpg",
+            "https://img.freepik.com/vector-gratis/ilustracion-proteccion-medio-ambiente-dibujada-mano_23-2150089571.jpg?t=st=1730759355~exp=1730762955~hmac=2a5d6f2aae569af4ce98f104c5fca0bd8b92bdfd817656b643da28956e9431ca&w=740",
+            "https://img.freepik.com/vector-gratis/composicion-dia-paz-ninos-mano-alrededor-mundo_23-2147895377.jpg?t=st=1730759435~exp=1730763035~hmac=306133d3e6358ff17d238bd7d907b57ad0a85ae69cfb6ca4ea1099dc6b4e1063&w=740",
+            "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFrUJ7G1mUJ7PM_gnJvDu0oqhVh8iCnNPSmsN11iWmg9WTp1-9UpqD_2xTpdhQo3-hgCXI7B7fXk3bfVbZFaWIPoXRAANnN5tOYnr1C3PxVC00Q1ko55VECdEz97o2JvXlBAWoo9qpM_g/s1600/earth-day.png"
+       
+        ];
+
+        // Seleccionar una imagen aleatoria
+        const imagenAleatoria = imagenes[Math.floor(Math.random() * imagenes.length)];
+        referenceImg.src = imagenAleatoria;
+
+        // Crear las piezas del puzle con la imagen aleatoria
+        const piezas = [];
+        for (let i = 0; i < 9; i++) {
+            const pieza = document.createElement("div");
+            pieza.classList.add("puzzlePiece");
+            pieza.style.backgroundImage = `url('${imagenAleatoria}')`;
+            pieza.style.backgroundPosition = `${(i % 3) * -100}px ${(Math.floor(i / 3)) * -100}px`;
+            pieza.setAttribute("draggable", "true");
+            pieza.dataset.index = i;
+            piezas.push(pieza);
+        }
+
+        // Mezclar las piezas y agregarlas al contenedor
+        piezas.sort(() => Math.random() - 0.5);
+        piezas.forEach(pieza => puzzleContainer.appendChild(pieza));
+
+        // Funcionalidad de arrastrar y soltar
+        let piezaArrastrada = null;
+        piezas.forEach(pieza => {
+            pieza.addEventListener("dragstart", (e) => {
+                piezaArrastrada = e.target;
+            });
+            pieza.addEventListener("dragover", (e) => {
+                e.preventDefault();
+            });
+            pieza.addEventListener("drop", (e) => {
+                e.preventDefault();
+                const piezaSoltada = e.target;
+                if (piezaSoltada !== piezaArrastrada) {
+                    // Intercambiar las posiciones en el DOM
+                    const contenedorPadre = piezaArrastrada.parentNode;
+                    const piezasArray = Array.from(puzzleContainer.children);
+                    const indexArrastrada = piezasArray.indexOf(piezaArrastrada);
+                    const indexSoltada = piezasArray.indexOf(piezaSoltada);
+
+                    contenedorPadre.insertBefore(piezaArrastrada, piezaSoltada);
+                    if (indexArrastrada < indexSoltada) {
+                        contenedorPadre.insertBefore(piezaSoltada, piezaArrastrada);
+                    } else {
+                        contenedorPadre.insertBefore(piezaArrastrada, piezaSoltada.nextSibling);
+                    }
+
+                    // Comprobar si el puzle está completo
+                    if (piezasArray.every((p, index) => p.dataset.index == index)) {
+                        message.style.display = "block"; // Mostrar el mensaje de felicitación
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

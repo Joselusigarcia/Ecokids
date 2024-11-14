@@ -1,0 +1,11 @@
+#audioButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#audioButton:hover {
+    background-color: #45a049;
+}
